@@ -5,6 +5,7 @@
 #include <fcntl.h>
 #include <string.h>
 #include <termios.h>
+#include <syslog.h>
 
 #include <util.h>
 
@@ -13,6 +14,8 @@ int main(int argc, char *argv [])
 {
     char * port1 = NULL;
     char * port2 = NULL;
+
+    openlog("test", LOG_PID | LOG_CONS | LOG_PERROR, LOG_LOCAL0);  // open logger with flags to save pid, send to console and stderr
 
     // parse comand line
     if (argc != 5)

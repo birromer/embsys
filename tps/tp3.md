@@ -14,4 +14,8 @@
   - reading: *read()*, getting the contents into the buffer;
   - closing: *close()*, closing the virtual port.
   
-* Question 5: 
+* Question 5: Modified in the file.
+
+* Question 6:
+
+* Question 7:
