@@ -14,8 +14,9 @@ int main(int argc, char *argv [])
 {
     char * port1 = NULL;
     char * port2 = NULL;
+    int time;
 
-    openlog("test", LOG_PID | LOG_CONS | LOG_PERROR, LOG_LOCAL0);  // open logger with flags to save pid, send to console and stderr
+    openlog("logfile", LOG_PID | LOG_CONS | LOG_PERROR, LOG_LOCAL0);  // open logger with flags to save pid, send to console and stderr
 
     // parse comand line
     if (argc != 5)
@@ -43,7 +44,6 @@ int main(int argc, char *argv [])
                 exit(EXIT_FAILURE);
         }
     }
-
 
     int fd[2];
 
@@ -75,6 +75,7 @@ int main(int argc, char *argv [])
 
             bzero(buff, sizeof(buff));
 
+
             FD_SET(fd[i], &fdset);
 
             select(fd[i]+1, &fdset, NULL, NULL, NULL);
@@ -85,6 +86,9 @@ int main(int argc, char *argv [])
 
                 if (bytes > 0)
                 {
+//                    time = get_time(fd[i], buff);
+                    syslog(LOG_LOCAL0, "Current time: %d | pid: %d", 1, getpid());
+
                     printf("%s\n", buff);
                     fflush(stdout);
                 }
